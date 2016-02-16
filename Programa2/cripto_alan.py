@@ -43,6 +43,11 @@ def by_row(matrix,ren,col):
 			new_cad = new_cad + matrix[i][j]
 	return new_cad
 
+def check_key(msn,key):
+	if key > 0 and key <= len(msn):
+		return True #La llave es valida
+	else:
+		return False 
 
 
 

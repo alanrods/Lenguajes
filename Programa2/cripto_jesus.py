@@ -1,6 +1,6 @@
 def completa(frase,n):
     """ 
-    Completa los espacios en la tabala en caso de necesitarlos con el caracter 'z'
+    Completa los espacios en la tabla en caso de necesitarlos con el caracter 'z'
 
     """
     	if len(frase) % n == 0:

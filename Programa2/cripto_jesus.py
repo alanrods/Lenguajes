@@ -14,10 +14,10 @@ def coddecod(frase,n):
 			copia=copia+frase[j+i]
 	return copia
 
-
-
 f=str(input("Frase a codificar: "))
 clave=int(input("Numero clave: "))
+if clave > len(f):
+    clave = clave % len(f) 
 if clave > 0:
     f=f.replace(" ","")
     f=completa(f,clave)

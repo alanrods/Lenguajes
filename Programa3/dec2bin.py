@@ -3,8 +3,8 @@ def dec2bin(number, bits):
 	"""
 	La funcion dec2bin lo que haces es evaluar si el numero ingresado es negativo o positivo.
 
-	Si es positivo entonces primero obtiene el número en binario utilizando la funcion bin() y 
-	remueve los caracteres "0b" que Python usa para representar un numero binario, también
+	Si es positivo entonces primero obtiene el numero en binario utilizando la funcion bin() y 
+	remueve los caracteres "0b" que Python usa para representar un numero binario, tambien
 	moviendo el string a la derecha y llenando con 0 usando .rjust completamos los bits en el numero.
 	dependiendo del numero que se establecio. 
 
@@ -25,19 +25,40 @@ def dec2bin(number, bits):
 
 def complemento1(value):
 	"""
-	El comlemento a 1 se obtiene intercambiando los valores que encuentra en el string binario iterando sobre 
+	El complemento a 1 se obtiene intercambiando los valores que encuentra en el string binario iterando sobre 
 	el string y cambiando los valores usando un diccionario	(Tabla hash).
 
 	"""
 	return ''.join(complement[x] for x in value)
 
-complement = {'1': '0', '0': '1'}
 
-print("Ingresa tu numero decimal y numero de bits \n")
-numero = int(input())
-bits = int(input())
-print('Complemento a 2 \t')
-binary1 = dec2bin(numero, bits)
-print(binary1)
-print('Complemento a 1 \t')
-print(complemento1(binary1))
+def menu_d2b():
+	print("Ingresa tu numero decimal y numero de bits \n")
+	numero = int(input("Numero decimal: "))
+	bits = int(input("Numero de bits: "))
+	print('Complemento a 2: \t')
+	binary1 = dec2bin(numero, bits)
+	print(binary1)
+	print('Complemento a 1: \t')
+	print(complemento1(binary1))
+	main_menu()
+
+def menu_b2d():
+	pass
+
+def main_menu():
+	op = 1
+	while op != 0:
+		print("\n1) Decimal a binario \n2) Binario a decinal\n")
+		op = int(input('... '))
+		if op > 0 and op < 3:
+			option[str(op)]()
+		else:
+			print("Verifica tu eleccion")
+
+complement = {'1': '0', '0': '1'}
+option = { '1':menu_d2b, '2':menu_b2d}
+main_menu()
+
+
+

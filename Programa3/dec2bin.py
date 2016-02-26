@@ -51,11 +51,11 @@ def main_menu():
 		print("\n1) Decimal a binario \n2) Binario a decinal\n")
 		op = int(input('... '))
 		if op > 0 and op < 3:
-			resultado = option[str(op)]()
 			if op == 1:
-				print("\nComplemento a 2:   Complemento a 1:")
-				print (resultado)
+				resultado1, resultado2 = option[str(op)]()
+				print("\nComplemento a 2: \n"+resultado1 +"\n\nComplemento a 1:\n"+resultado2)
 			if op == 2: 
+				resultado = option[str(op)]()
 				print(resultado)
 		else:
 			print("Verifica tu eleccion")

@@ -15,7 +15,6 @@ def dec2bin(number, bits):
 	agrega '1' a la izquierda dependiendo del numero de bits usando .rjust,
 	finalmente realizamos la operacion de complemento a 1
 
-
 	"""
 	if number < 0:
 		return complemento1(bin(abs(number) - 1)[2:]).rjust(bits, '1')
@@ -36,15 +35,15 @@ def menu_d2b():
 	print("Ingresa tu numero decimal y numero de bits \n")
 	numero = int(input("Numero decimal: "))
 	bits = int(input("Numero de bits: "))
-	print('Complemento a 2: \t')
 	binary1 = dec2bin(numero, bits)
-	print(binary1)
-	print('Complemento a 1: \t')
-	print(complemento1(binary1))
-	main_menu()
+	binary2 = complemento1(binary1)
+	return binary1, binary2
 
 def menu_b2d():
-	pass
+	print("Ingresa tu numero binario, el bit mas significativo es tomado como signo\n")
+	numero = str(input("Numero binario: "))
+	numero = int(numero, 2) 
+	return numero
 
 def main_menu():
 	op = 1
@@ -52,7 +51,12 @@ def main_menu():
 		print("\n1) Decimal a binario \n2) Binario a decinal\n")
 		op = int(input('... '))
 		if op > 0 and op < 3:
-			option[str(op)]()
+			resultado = option[str(op)]()
+			if op == 1:
+				print("\nComplemento a 2:   Complemento a 1:")
+				print (resultado)
+			if op == 2: 
+				print(resultado)
 		else:
 			print("Verifica tu eleccion")
 

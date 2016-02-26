@@ -37,6 +37,9 @@ def complemento1(value):
 
 
 def menu_d2b():
+	"""
+	Se manda a llamar a las funciones de complemento a 2 y complemento a 1, la funcion regresa dos valores los cuales son usados en el menu principal.
+	"""
 	print("Ingresa tu numero decimal y numero de bits \n")
 	numero = int(input("Numero decimal: "))
 	bits = int(input("Numero de bits: "))
@@ -45,21 +48,28 @@ def menu_d2b():
 	return binary1, binary2
 
 def menu_b2d():
+	"""
+	La funcion menu_b2d cumple la funcion de capturar el numero binario que se sea transformar, si el bit mas significativo es uno entonces se toma como un numero
+	negativo, se realiza un shift binario hacia la izquierda, se regresa 1 con un shift a la izquierda en funcion de la longitud de bits del numero binario introducido
+	
+	Si el bit mas significativo es 0 entonces se toma como un numero positivo y se transforma usando la funcion int(numero_binario, base), se corta el bit mas significativo ya que
+	solo se trabajan con los bits de magnitud
+	"""
 	print("Ingresa tu numero binario, el bit mas significativo es tomado como signo\n")
 	numero = str(input("Numero binario: "))
-	print(numero)
 	if numero.startswith('1') is True:
 		x = int(numero,2)
 		num_bits = len(numero)
 		num_dec = (x - (1 << num_bits))
 	else:
-		#El bug está al entrar aquí
-		print (numero)
-		num_dec = int(str(numero), 2)
+		num_dec = int(str(numero)[1:], 2)
 	return num_dec
 
 def main_menu():
 	op = 1
+	"""
+	Menu que manda a llamar a las funciones dependiendo de el numero seleccionado, si se introduce 0 se termina la ejecucion del programa. 
+	"""
 	while op != 0:
 		print("\n1) Decimal a binario \n2) Binario a decimal\n")
 		op = int(input('... '))
@@ -69,6 +79,7 @@ def main_menu():
 				print("\nComplemento a 2: \n"+resultado1 +"\n\nComplemento a 1:\n"+resultado2)
 			if op == 2: 
 				resultado = option[str(op)]()
+				print("Numero decimal: ")
 				print(resultado)
 		else:
 			print("Verifica tu eleccion")
@@ -76,6 +87,3 @@ def main_menu():
 complement = {'1': '0', '0': '1'}
 option = { '1':menu_d2b, '2':menu_b2d}
 main_menu()
-
-
-

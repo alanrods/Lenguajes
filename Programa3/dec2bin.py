@@ -1,5 +1,10 @@
+# Desarrollado por:
+# Moreno Tagle Raphael Ivan
+# Plata Martinez Jesus Alejandro
+# Rodriguez Bribiesca Isaac
+# Rodriguez Garcia Alan Julian
 
-def dec2bin(number, bits):
+def dec2bin(number, bits): #Esta es la de complemento a 2
 	"""
 	La funcion dec2bin lo que haces es evaluar si el numero ingresado es negativo o positivo.
 
@@ -42,13 +47,21 @@ def menu_d2b():
 def menu_b2d():
 	print("Ingresa tu numero binario, el bit mas significativo es tomado como signo\n")
 	numero = str(input("Numero binario: "))
-	numero = int(numero, 2) 
-	return numero
+	print(numero)
+	if numero.startswith('1') is True:
+		x = int(numero,2)
+		num_bits = len(numero)
+		num_dec = (x - (1 << num_bits))
+	else:
+		#El bug está al entrar aquí
+		print (numero)
+		num_dec = int(str(numero), 2)
+	return num_dec
 
 def main_menu():
 	op = 1
 	while op != 0:
-		print("\n1) Decimal a binario \n2) Binario a decinal\n")
+		print("\n1) Decimal a binario \n2) Binario a decimal\n")
 		op = int(input('... '))
 		if op > 0 and op < 3:
 			if op == 1:

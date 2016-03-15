@@ -48,6 +48,7 @@ def bin2dec(n):
 
 	"""
 	dec = 0
+	n = n[::-1]
 	for i in range(0,len(n)):
 		dec = dec + int(n[i])*(2**i)
 	return dec

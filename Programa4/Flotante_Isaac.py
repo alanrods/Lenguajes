@@ -1,4 +1,12 @@
+# Desarrollado por:
+# Moreno Tagle Raphael Ivan
+# Plata Martinez Jesus Alejandro
+# Rodriguez Bribiesca Isaac
+# Rodriguez Garcia Alan Julian
+
+
 import math
+
 
 def flotante(n):
 	"""
@@ -70,7 +78,12 @@ def frac2bin(n):
 
 def decimal(n):
 	"""
-	
+	Realiza el algortimo standard de fraccion binaria a decimal
+
+	Mediante iteraciones asigna a frac el valor del inverso de 2 elevado al numero de la iteracion en la que se encuentra
+	el algortimo.
+
+	"dec" toma el valor de la formula para obtener el valor en decimal. 
 	"""
 
 	exp = bin2dec(n[1:9]) - 127

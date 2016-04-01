@@ -8,9 +8,6 @@ def evalExp(exp):
 	pilaDatos = []
 	pilaOp = []
 
-	i = 0
-	x, y = 0, 0
-
 	while i<len(exp): 
 		if exp[i] != '(' and exp[i] != ')':
 			if (ord(exp[i])>47 and ord(exp[i])<58) or exp[i]=='F' or exp[i]=='T':
@@ -24,19 +21,19 @@ def evalExp(exp):
 					pilaDatos.append(exp[i])
 					print(pilaDatos)
 			else:
-				if ord(exp[i])==61:
+				if exp[i]=='=':
 					pilaOp.append('=')
 					i+=1
-				elif ord(exp[i])==60 and ord(exp[i+1])==61:
+				elif exp[i]=='<' and exp[i+1]=='=':
 					pilaOp.append('<=')
 					i+=1
-				elif ord(exp[i])==60:
+				elif exp[i]=='<':
 					pilaOp.append('<')
-				elif ord(exp[i])==118:
+				elif exp[i]=='v':
 					pilaOp.append('v')
-				elif ord(exp[i])==94:
+				elif exp[i]=='^':
 					pilaOp.append('^')
-				elif ord(exp[i])==172:
+				elif exp[i]=='¬':
 					pilaOp.append('¬')
 				else:
 					pilaOp.append(exp[i])

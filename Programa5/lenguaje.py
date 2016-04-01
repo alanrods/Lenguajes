@@ -8,8 +8,6 @@
 
 def evalExp(exp):
 	"""
-<<<<<<< HEAD
-=======
 	Esta función permite ir recorriendo caracter por caracter la cadena que el usuario desea evaluar. 
 
 	Se define un diccionario para una evaluacion mas optima de las expresiones. Las claves de dicho diccionario corresponden 
@@ -25,10 +23,6 @@ def evalExp(exp):
         considera el uso de valores numericos 0 y 1 asociados a T y F.
 
     	La funcion devuelve las pilas de operandos y operadores para su posterior analisis de acuerdo al algoritmo
-
-	"""
->>>>>>> origin/master
-
 	"""
 	ops = {"+": (lambda x,y: x+y), "-": (lambda x,y: x-y), "*": (lambda x,y: x*y), "=": (lambda x,y: int(x==y)), "<=": (lambda x,y: int(x<=y)),
 			"<": (lambda x,y: int(x<y)), "v": (lambda x,y: x or y), "^": (lambda x,y: x and y), "¬": (lambda x: int(not x))}

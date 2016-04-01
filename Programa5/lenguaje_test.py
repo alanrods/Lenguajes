@@ -44,7 +44,7 @@ def remove(f):
             f.remove("(")
     return f
 
-dic = {"^":"and", "v":"or", "~":"not", "=":"=="}
+dic = {"^":"and", "v":"or", "~":"not", "==":"==", "<" : "<=", ">":">="}
 equation = input("Ingresa tu cadena bien formada\n")
 f = bool_Oper(equation, dic)
 f = remove(f)

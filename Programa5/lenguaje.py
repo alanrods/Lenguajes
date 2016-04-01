@@ -61,14 +61,15 @@ def evalExp(exp):
 					pilaOp.append(exp[i])
 				print(pilaOp)
 		elif exp[i] == ')':
-			if pilaOp[len(pilaOp)] == '¬':
+			if pilaOp[len(pilaOp)-1] == '¬':
 				x = int(pilaDatos.pop())
 				pilaDatos.append(ops[pilaOp.pop()] (x))
+				print(pilaDatos)
 			else:
-			x = int(pilaDatos.pop())
-			y = int(pilaDatos.pop())
-			pilaDatos.append(ops[pilaOp.pop()] (y,x))
-			print(pilaDatos)
+				x = int(pilaDatos.pop())
+				y = int(pilaDatos.pop())
+				pilaDatos.append(ops[pilaOp.pop()] (y,x))
+				print(pilaDatos)
 		#print("Actual: " + str(exp[i]))
 		i+=1
 	return pilaDatos, pilaOp

@@ -5,7 +5,7 @@ def evalExp(exp):
 
 	pilaDatos = []
 	pilaOp = []
-
+	i=0
 	while i<len(exp): 
 		if exp[i] != '(' and exp[i] != ')':
 			if (ord(exp[i])>47 and ord(exp[i])<58) or exp[i]=='F' or exp[i]=='T':

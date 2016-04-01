@@ -1,5 +1,7 @@
 def evalExp(exp):
+	"""
 
+	"""
 	ops = {"+": (lambda x,y: x+y), "-": (lambda x,y: x-y), "*": (lambda x,y: x*y), "=": (lambda x,y: int(x==y)), "<=": (lambda x,y: int(x<=y)),
 			"<": (lambda x,y: int(x<y)), "v": (lambda x,y: x or y), "^": (lambda x,y: x and y), "¬": (lambda x: int(not x))}
 
@@ -37,6 +39,10 @@ def evalExp(exp):
 					pilaOp.append(exp[i])
 				print(pilaOp)
 		elif exp[i] == ')':
+			if pilaOp[len(pilaOp)] == '¬':
+				x = int(pilaDatos.pop())
+				pilaDatos.append(ops[pilaOp.pop()] (x))
+			else:
 			x = int(pilaDatos.pop())
 			y = int(pilaDatos.pop())
 			pilaDatos.append(ops[pilaOp.pop()] (y,x))

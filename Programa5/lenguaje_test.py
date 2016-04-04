@@ -1,4 +1,3 @@
-
 "Calular expresiones booleans" 
 def bool_Oper(equation, dic):
     """ 

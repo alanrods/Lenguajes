@@ -51,19 +51,6 @@ class Crypto(object):
 		self.data(cadena, key)
 		return self.by_column()
 
-	#def decipher(self, cadena, key):
-	#	tam = len(cadena)
-	#	ren = int(math.ceil(tam / float(key))) 
-	#	m = []
-	#	p = 0
-	#	for i in range(0,ren):
-	#		m.append([])
-	#		p = i
-	#		for j in range(0, key):
-	#			m[i].append(cadena[p])
-	#			p = ren + p 
-	#	return m
-	
 	def by_row(self, ren, col):
 		new_cad = ""
 		for i in range(0,ren):

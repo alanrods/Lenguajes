@@ -1,3 +1,9 @@
+//Elaborado por:
+//Moreno Tagle Raphael Ivan 
+//Plata Martinez Jesus Alejandro 
+//Rodriguez Bribiesca Isaac 
+//Rodriguez Garcia Alan Julian
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

@@ -36,16 +36,23 @@ void main(){
 	invierteLista(A, tam);
 
 	putchar('\n');
+	printf("Arreglo invertido: \n");
 	for (i = 0; i < tam; ++i){
-		printf("%d\n", *(A+i));
+		printf("%d ", *(A+i));
 	}
+	printf("\n");
 
 	B = distanciaAngulo(B, tam);
 
 	putchar('\n');
+	printf("Distancia entre angulos:\n");
 	for (i = 0; i < tam-1; ++i){
 		printf("(%.4lf, %.4lf)\n", *(*(B+i)), *(*(B+i) + 1));
+
 	}
+	free(A);
+	free(B);
+
 }
 
 void invierteLista(int *arreglo, int tam){
@@ -68,5 +75,6 @@ double **distanciaAngulo(double **arreglo, int tam){
 		*(*(copia + i)) = sqrt(pow(abs(*(*(arreglo + i + 1))-*(*(arreglo + i))), 2) + pow(abs(*(*(arreglo + i + 1) + 1)-*(*(arreglo + i) + 1)), 2));
 		*(*(copia + i) + 1)	= atan2(*(*(arreglo + i + 1) + 1)-*(*(arreglo + i) + 1), *(*(arreglo + i + 1))-*(*(arreglo + i)))*(180/M_PI);
 	}
+
 	return copia;
 }

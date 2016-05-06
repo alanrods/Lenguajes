@@ -1,5 +1,5 @@
 /**
- * Ejemplifica la elección de constructores
+ * Ayuda a ejemplificar la elección de constructores y encademamiento de constructores
  * 05/05/2016
  */
 public class Vehiculo {

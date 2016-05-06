@@ -1,4 +1,7 @@
-
+/**
+ * Ejemplifica la elección de constructores
+ * 
+ */
 public class Vehiculo {
     private static final int SPEED = 250;
     private String marcaVehiculo;

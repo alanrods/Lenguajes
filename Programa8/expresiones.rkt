@@ -13,12 +13,16 @@
     [(sum? en)(+(evaluar(sum-izq en))
                 (evaluar(sum-der en)))]
     [(mul? en)(*(evaluar(mul-izq en))
-                (evaluar(mul-der en)))]
-    ;[(symbol? en)(substituir(en))]
-    ))
+                (evaluar(mul-der en)))]))
 
-(check-expect (evaluar 5)5)
-(check-expect (evaluar (make-sum 3 5))8)
-(check-expect (evaluar (make-mul 3 5))15)
-(check-expect (evaluar (make-sum(make-mul 5 5)(make-mul 4 4)))41)
-;(define (substituir exp))
+(define (subst en sym val)
+  (cond
+    [(number? en)en]
+    [(and (symbol? en) (equal? en sym)) val]
+    [(sum? en)(make-sum(subst(sum-izq en) sym val)
+                (subst(sum-der en) sym val))]
+    [(mul? en)(make-mul(subst(mul-izq en) sym val)
+                 (subst(mul-der en) sym val))]
+    [else en]))
+
+(check-expect (subst 5 'x 2)5)

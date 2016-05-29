@@ -9,16 +9,37 @@
 
 (define (evaluar en)
   (cond
-    [(number? en) en]
+    [(number? en)en]
+    [(conSimbolo en) "No se puede evaluar"]
     [(sum? en)(+(evaluar(sum-izq en))
                 (evaluar(sum-der en)))]
     [(mul? en)(*(evaluar(mul-izq en))
-                (evaluar(mul-der en)))]
-    ;[(symbol? en)(substituir(en))]
-    ))
+                 (evaluar(mul-der en)))]))
 
-(check-expect (evaluar 5)5)
-(check-expect (evaluar (make-sum 3 5))8)
-(check-expect (evaluar (make-mul 3 5))15)
-(check-expect (evaluar (make-sum(make-mul 5 5)(make-mul 4 4)))41)
-;(define (substituir exp))
+(define (conSimbolo en)
+  (cond
+    [(number? en) (not (number? en))]
+    [(symbol? en) (symbol? en)]
+    [(sum? en)(or (conSimbolo(sum-izq en))
+                (conSimbolo(sum-der en)))]
+    [(mul? en)(or (conSimbolo(mul-izq en))
+                 (conSimbolo(mul-der en)))]))
+;(check-expect (conSimbolo (make-sum(make-mul 3 'x)(make-mul 4 4))) #t)
+
+(define (subst en var n)
+  (cond
+    [(number? en)en]
+    [(equal? en var)n]
+    [(symbol? en)en]
+    [(sum? en)(make-sum (subst(sum-izq en) var n)
+                (subst(sum-der en) var n))]
+    [(mul? en)(make-mul(subst(mul-izq en) var n)
+                 (subst(mul-der en) var n))]))
+
+(check-expect (subst 5 'x 2) 5)
+(check-expect (subst 'x 'x 2) 2)
+(check-expect (subst (make-sum 3 5) 'x 2) (make-sum 3 5))
+(check-expect (subst (make-sum (make-mul 3 'x) (make-mul 4 'x)) 'x 2)
+              (make-sum (make-mul 3 2) (make-mul 4 2)))
+(check-expect (subst (make-sum (make-mul 'x 'y) (make-mul 'x 'z)) 'x 2)
+              (make-sum (make-mul 2 'y) (make-mul 2 'z)))

@@ -14,9 +14,11 @@
                 (evaluar(sum-der en)))]
     [(mul? en)(*(evaluar(mul-izq en))
                 (evaluar(mul-der en)))]
-    [(symbol? en)(substituir en)))
+    ;[(symbol? en)(substituir(en))]
+    ))
 
 (check-expect (evaluar 5)5)
 (check-expect (evaluar (make-sum 3 5))8)
 (check-expect (evaluar (make-mul 3 5))15)
 (check-expect (evaluar (make-sum(make-mul 5 5)(make-mul 4 4)))41)
+;(define (substituir exp))

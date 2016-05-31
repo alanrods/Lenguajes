@@ -3,8 +3,8 @@
 #reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname ArbolBinario) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
 (define-struct nodo (valor izq der))
 
-(define (numhojas ab)
+(define (numnodos ab)
   (cond
     [(number? ab) 1]
-    [(nodo? ab)(+(numhojas(nodo-izq ab))
-                (numhojas(nodo-der ab)))]))
+    [(nodo? ab)(+(numnodos(nodo-izq ab))
+                (numnodos(nodo-der ab)))]))

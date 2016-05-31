@@ -18,6 +18,21 @@
                                                (make-nodo
                                                 (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (inserta-nodo nodo-n (nodo-izq ab)))])]))
 
+
+(define (node-insert node-n arb)
+  (cond
+    [(< (node-valor node-n)(nodo-valor arb))(cond
+                                              [(null? (nodo-izq arb))(make-nodo arb-valor node-n-valor null)]
+                                              [(else
+                                                (node-insert node-n arb-izq))])]
+    [(>(node-valor node-n)(nodo-valor arb))(cond
+                                             [(null? (nodo-der arb))(make-nodo arb-valor null node-n-valor)]
+                                             [(else
+                                               (node-insert node-n arb-der))])]
+    ))
+
+
+
 (define (num-hojas ab)
   (cond
     [(and (null? (nodo-izq ab)) (null? (nodo-der ab))) 1]

@@ -8,15 +8,28 @@
 (define (inserta-nodo nodo-n ab)
   (cond
     [(< (nodo-valor nodo-n)(nodo-valor ab)) (cond
-                                              [(null? (nodo-izq ab)) nodo-n]
+                                              [(null? (nodo-izq ab)) (make-nodo (nodo-valor ab) nodo-n (nodo-der ab))]
                                               [else
                                                (make-nodo
-                                                (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (inserta-nodo nodo-n (nodo-izq ab)))])]
+                                                (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (nodo-der ab))])]
     [(> (nodo-valor nodo-n)(nodo-valor ab)) (cond
-                                              [(null? (nodo-der ab)) nodo-n]
+                                              [(null? (nodo-der ab)) (make-nodo (nodo-valor ab) (nodo-izq ab) nodo-n)]
                                               [else
                                                (make-nodo
-                                                (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (inserta-nodo nodo-n (nodo-izq ab)))])]))
+                                                (nodo-valor ab) (nodo-izq ab) (inserta-nodo nodo-n (nodo-der ab)))])]))
+
+
+(define (node-insert node-n arb)
+  (cond
+    [(< (node-valor node-n)(nodo-valor arb))(cond
+                                              [(null? (nodo-izq arb))(make-nodo arb-valor node-n-valor null)]
+                                              [(else
+                                                (node-insert node-n arb-izq))])]
+    [(>(node-valor node-n)(nodo-valor arb))(cond
+                                             [(null? (nodo-der arb))(make-nodo arb-valor null node-n-valor)]
+                                             [(else
+                                               (node-insert node-n arb-der))])]
+    ))
 
 
 (define (node-insert node-n arb)
@@ -39,6 +52,26 @@
     [(nodo? ab)(+(num-hojas(nodo-izq ab))
                 (num-hojas(nodo-der ab)))]))
 
+#|
+(struct nodo (valor izq der)#:transparent)
+
+(define (crea-nodo valor) (nodo valor null null))
+
+(define (inserta-nodo nodo-n ab)
+  (cond
+    [(< (nodo-valor nodo-n)(nodo-valor ab)) (cond
+                                              [(null? (nodo-izq ab)) (struct-copy nodo ab [izq (crea-nodo (nodo-valor nodo-n))])]
+                                              [else
+                                               (nodo
+                                                (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (inserta-nodo nodo-n (nodo-der ab)))])]
+    [(> (nodo-valor nodo-n)(nodo-valor ab)) (cond
+                                              [(null? (nodo-der ab)) (struct-copy nodo ab [der (crea-nodo (nodo-valor nodo-n))])]
+                                              [else
+                                               (nodo
+                                                (nodo-valor ab) (inserta-nodo nodo-n (nodo-izq ab)) (inserta-nodo nodo-n (nodo-der ab)))])]))
+
+(inserta-nodo (crea-nodo 10) (nodo 10 (nodo 8 '() '()) '()))
+|#
 
 #|
 (struct posn (x y)#:transparent)

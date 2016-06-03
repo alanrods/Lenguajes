@@ -19,6 +19,43 @@
                                                (make-nodo
                                                 (nodo-valor ab) (nodo-izq ab) (inserta-nodo nodo-n (nodo-der ab)))])]
     [else ab]))
+ 
+(define (saca-nodo valor ab) (saca-aux valor ab (num-hijos (busca-nodo valor ab)) (maximo (busca-nodo valor ab))))
+
+(define (saca-aux valor ab num-hijos-nodo nodo-max)
+  (cond
+    [(equal? num-hijos-nodo 0) (cond
+                                 [(equal? valor (nodo-valor ab)) null]
+                                 [(equal? (num-hijos ab) 2) (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+                                 [(equal? (num-hijos ab) 0) ab]
+                                 [(and (equal? (nodo-izq ab) null) (equal? (num-hijos ab) 1)) (make-nodo (nodo-valor ab) null (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+                                 [else (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) null)])]
+    [(equal? num-hijos-nodo 1) (cond
+                                 [(equal? valor (nodo-valor ab)) (cond
+                                                                   [(equal? (nodo-izq ab) null) (nodo-der ab)]
+                                                                   [else (nodo-izq ab)])]
+                                 [(equal? (num-hijos ab) 2) (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+                                 [(equal? (num-hijos ab) 0) ab]
+                                 [(and (equal? (nodo-izq ab) null) (equal? (num-hijos ab) 1)) (make-nodo (nodo-valor ab) null (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+                                 [else (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) null)])]
+    [else (cond
+            [(equal? (nodo-valor nodo-max) (nodo-valor ab)) null]
+            [(equal? valor (nodo-valor ab)) (make-nodo (nodo-valor (maximo ab)) (nodo-izq ab) (nodo-der ab))]
+            [(equal? (num-hijos ab) 2) (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+            [(equal? (num-hijos ab) 0) ab]
+            [(and (equal? (nodo-izq ab) null) (equal? (num-hijos ab) 1)) (make-nodo (nodo-valor ab) null (saca-aux valor (nodo-der ab) num-hijos-nodo nodo-max))]
+            [else (make-nodo (nodo-valor ab) (saca-aux valor (nodo-izq ab) num-hijos-nodo nodo-max) null)])]))
+  
+(define (maximo ab)
+  (cond
+    [(equal? (nodo-der ab) null) ab]
+    [else (maximo (nodo-der ab))]))
+
+(define (num-hijos ab)
+  (cond
+    [(and (null? (nodo-izq ab)) (null? (nodo-der ab))) 0]
+    [(and (not (null? (nodo-izq ab))) (not (null? (nodo-der ab)))) 2]
+    [else 1]))
 
 (define (num-hojas ab)
   (cond
@@ -49,18 +86,25 @@
     [else (append (post-orden (nodo-izq ab)) (post-orden (nodo-der ab)) (list (nodo-valor ab)))]))
 
 (define arbol1 (crea-nodo 10))
-(define arbol2 (inserta-nodo (crea-nodo 8) arbol1))
-(define arbol3 (inserta-nodo (crea-nodo 9) arbol2))
-(define arbol4 (inserta-nodo (crea-nodo 2) arbol3))
-(define arbol5 (inserta-nodo (crea-nodo 20) arbol4))
+;(define arbol2 (inserta-nodo (crea-nodo 8) arbol1))
+;(define arbol3 (inserta-nodo (crea-nodo 9) arbol2))
+;(define arbol4 (inserta-nodo (crea-nodo 2) arbol3))
+(define arbol5 (inserta-nodo (crea-nodo 20) arbol1))
 (define arbol6 (inserta-nodo (crea-nodo 15) arbol5))
 (define arbol7 (inserta-nodo (crea-nodo 23) arbol6))
+;(define arbol8 (inserta-nodo (crea-nodo 1) arbol7))
+;(define a )
 arbol7
-(num-hojas arbol7)
-(busca-nodo 2 arbol7)
-(pre-orden arbol7)
-(in-orden arbol7)
-(post-orden arbol7)
+;(num-hojas arbol7)
+;(busca-nodo 2 arbol7)
+;(pre-orden arbol7)
+;(in-orden arbol7)
+;(post-orden arbol7)
+;(define arbol9 (saca-nodo 2 arbol8))
+;arbol8
+;arbol9
+;(maximo arbol8)
+;(saca-nodo 8 arbol8)
 
 #|
 (define (node-insert node-n arb)
